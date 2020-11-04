@@ -1,24 +1,3 @@
---[[
-	 ______ _____ _   _ _____ _________     __
-	|  ____|_   _| \ | |_   _|__   __\ \   / /
-	| |__    | | |  \| | | |    | |   \ \_/ / 
-	|  __|   | | | . ` | | |    | |    \   /  
-	| |     _| |_| |\  |_| |_   | |     | |   
-	|_|    |_____|_| \_|_____|  |_|     |_|   
-	
-	Source:
-		https://d3to-finity.000webhostapp.com/files/source-0.1.2.txt
-	Version:
-	 0.1.4
-	Date: 
-		January 18th, 2020
-	Author: 
-		detourious @ v3rmillion.net
-		deto#7612  @ discord.gg
-					
---]]
-
-
 local finity = {}
 finity.gs = {}
 
@@ -1179,7 +1158,7 @@ function finity.new(isdark, gprojectName, thinProject)
 						cheat.numbervalue.Parent = cheat.sliderbar
 						cheat.sliderbar.Parent = cheat.container
 					elseif string.lower(kind) == "button" then
-						local button_text = data and data.text
+						local button_text = data
 
 						cheat.background = finity:Create("ImageLabel", {
 							Name = "Background",
