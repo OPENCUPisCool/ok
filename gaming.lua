@@ -246,62 +246,9 @@ function finity.new(isdark, gprojectName, thinProject)
 		self2.container.Size = thinProject
 	end
 
-	self2.container.Draggable = false
+	self2.container.Draggable = true
 	self2.container.Active = true
 	
-local gui = self2
-local dragging
-local dragInput
-local dragStart
-local startPos
-EasingDir = Enum.EasingDirection.Out
-EasingSty = Enum.EasingStyle.Quint
-EasingTim = 0.69
-EasingOve = true
-
-local function update(input)
-    local delta = input.Position - dragStart
-    gui:TweenPosition(
-        UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y),
-        EasingDir,
-        EasingSty,
-        EasingTim,
-        EasingOve
-    )
-    game:GetService("RunService").Stepped:Wait()
-end
-gui.InputBegan:Connect(
-    function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragging = true
-            dragStart = input.Position
-            startPos = gui.Position
-            input.Changed:Connect(
-                function()
-                    if input.UserInputState == Enum.UserInputState.End then
-                        dragging = false
-                    end
-                end
-            )
-        end
-    end
-)
-gui.InputChanged:Connect(
-    function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            dragInput = input
-        end
-    end
-)
-UserInputService.InputChanged:Connect(
-    function(input)
-        if input == dragInput and dragging then
-            update(input)
-        end
-    end
-)
-
-
 	self2.sidebar = self:Create("Frame", {
 		Name = "Sidebar",
 		BackgroundColor3 = Color3.new(0.976471, 0.937255, 1),
