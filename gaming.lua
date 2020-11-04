@@ -283,7 +283,7 @@ function finity.new(isdark, gprojectName, thinProject)
 		Name = "TopbarTip",
 		ZIndex = 2,
 		Size = UDim2.new(1, -30, 0, 30),
-		Position = UDim2.new(0, 30, 0, 0),
+		Position = UDim2.new(0, 25, 0, 0),
 		Text = "Press '".. string.sub(tostring(self.ToggleKey), 14) .."' to hide this menu",
 		Font = Enum.Font.GothamSemibold,
 		TextSize = 13,
