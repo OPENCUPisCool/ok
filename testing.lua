@@ -983,6 +983,7 @@ function finity.new(isdark, gprojectName, thinProject)
 									end
 							    end)
 							end)
+							cheat.fadelist()
 					    end
 						
 						function cheat:SetValue(value)
