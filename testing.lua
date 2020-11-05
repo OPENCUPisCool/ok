@@ -982,8 +982,9 @@ function finity.new(isdark, gprojectName, thinProject)
 									    end	
 									end
 							    end)
+							    finity.gs["TweenService"]:Create(button, TweenInfo.new(0), {TextTransparency = 1}):Play()										
 							end)
-							cheat.fadelist()
+							finity.gs["TweenService"]:Create(cheat.list, TweenInfo.new(0), {Size = UDim2.new(1, 0, 0, 0), Position = UDim2.new(0, 0, 1, 0), CanvasSize = UDim2.new(0, 0, 0, cheat.list["UIListLayout"].AbsoluteContentSize.Y), ScrollBarImageTransparency = 1, BackgroundTransparency = 1}):Play()
 					    end
 						
 						function cheat:SetValue(value)
