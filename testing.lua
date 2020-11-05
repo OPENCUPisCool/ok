@@ -763,7 +763,7 @@ function finity.new(isdark, gprojectName, thinProject)
 							end
 						end
 						
-						local options
+						local options = {}
 						
 						if data and data.options then
 							options = data.options
@@ -779,7 +779,7 @@ function finity.new(isdark, gprojectName, thinProject)
 							ZIndex = 2,
 							Image = "rbxassetid://3570695787",
 							ImageColor3 = theme.dropdown_background,
-							ImageTransparency = 0.5,
+							ImageTransparency = 0,
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
 							SliceScale = 0.02
@@ -935,10 +935,55 @@ function finity.new(isdark, gprojectName, thinProject)
 						end
 						
 						function cheat:AddOption(value)
-							table.insert(options, value)
+							DropDownOptions = value or {}
+
+							for _, child in next, cheat.list:GetChildren() do
+								if child:IsA("TextButton") then
+									child:Destroy()
+								end
+							end
 							
-							refreshOptions()
-						end
+							table.foreach(DropDownOptions, function(_,value)
+								
+							
+								local button = finity:Create("TextButton", {
+									BackgroundColor3 = Color3.new(1, 1, 1),
+									BackgroundTransparency = 1,
+									Size = UDim2.new(1, 0, 0, 20),
+									ZIndex = 3,
+									Font = Enum.Font.Gotham,
+									Text = value,
+									TextColor3 = theme.dropdown_text,
+									TextSize = 13
+								})
+	
+								button.Parent = cheat.list
+	
+								button.MouseEnter:Connect(function()
+									finity.gs["TweenService"]:Create(button, TweenInfo.new(0.1), {TextColor3 = theme.dropdown_text_hover}):Play()
+								end)
+								button.MouseLeave:Connect(function()
+									finity.gs["TweenService"]:Create(button, TweenInfo.new(0.1), {TextColor3 = theme.dropdown_text}):Play()
+								end)
+								button.MouseButton1Click:Connect(function()
+									if cheat.dropped then
+										cheat.value = value
+										cheat.selected.Text = value
+	
+										cheat.fadelist()
+										
+										if callback then
+											local s, e = pcall(function()
+												callback(cheat.value)
+											end)
+	
+											if not s then warn("error: ".. e) end
+										
+									    end	
+									end
+							    end)
+							end)
+					    end
 						
 						function cheat:SetValue(value)
 							cheat.selected.Text = value
@@ -955,7 +1000,8 @@ function finity.new(isdark, gprojectName, thinProject)
 
 								if not s then warn("error: ".. e) end
 							end
-						end
+						    end
+		
 
 						cheat.selected.Parent = cheat.dropdown
 						cheat.dropdown.Parent = cheat.container
