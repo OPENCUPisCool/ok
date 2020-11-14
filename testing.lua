@@ -83,6 +83,7 @@ setmetatable(finity.gs, {
 	end
 })
 
+_G.uiname = "Sample UI"
 
 local mouse = finity.gs["Players"].LocalPlayer:GetMouse()
 
@@ -121,7 +122,7 @@ function finity.new(isdark, gprojectName, thinProject)
 	local self = finity
 
 	if not finity.gs["RunService"]:IsStudio() and self.gs["CoreGui"]:FindFirstChild("FinityUI") then
-		warn("finity:", "instance already exists in coregui!")
+		warn("hi", "remove ui from coregui pls")
 		
 		return
 	end
@@ -195,8 +196,9 @@ function finity.new(isdark, gprojectName, thinProject)
 		end
 	end)
 
+
 	self2.userinterface = self:Create("ScreenGui", {
-		Name = "FinityUI",
+		Name = _G.uiname,
 		ZIndexBehavior = Enum.ZIndexBehavior.Global,
 		ResetOnSpawn = false,
 	})
@@ -802,7 +804,7 @@ function finity.new(isdark, gprojectName, thinProject)
 						cheat.list = finity:Create("ScrollingFrame", {
 							Name = "List",
 							BackgroundColor3 = theme.dropdown_background,
-							BackgroundTransparency = 0.5,
+							BackgroundTransparency = 0,
 							BorderSizePixel = 0,
 							Position = UDim2.new(0, 0, 1, 0),
 							Size = UDim2.new(1, 0, 0, 100),
